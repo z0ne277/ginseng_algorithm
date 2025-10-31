@@ -8,8 +8,6 @@ import cv2
 
 
 class SimCLR_V2_Augmentation:
-    """SimCLR V2论文风格的强增强"""
-
     def __init__(self):
         pass
 
@@ -19,7 +17,6 @@ class SimCLR_V2_Augmentation:
     def augment(self, image):
         width, height = image.size
 
-        # ========== 1. 强几何变换 ==========
         # 水平翻转
         if random.random() > 0.3:
             image = image.transpose(Image.FLIP_LEFT_RIGHT)
