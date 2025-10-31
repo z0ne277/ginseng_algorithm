@@ -97,9 +97,8 @@ class SimCLR_V2_Augmentation:
         return image
 
     def _add_strong_noise(self, image):
-        """添加强噪声"""
         img_np = np.array(image).astype(np.float32)
-        noise_level = random.uniform(20, 50)  # 更强的噪声
+        noise_level = random.uniform(20, 50)  
         noise = np.random.normal(0, noise_level, img_np.shape)
         img_np = np.clip(img_np + noise, 0, 255)
         img_np = (img_np > 128).astype(np.uint8) * 255
