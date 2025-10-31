@@ -106,19 +106,16 @@ class SimCLR_V2_Augmentation:
         return Image.fromarray(img_np.astype(np.uint8))
 
     def _aggressive_erasing(self, image):
-        """更激进的随机擦除"""
         img_np = np.array(image)
         h, w = img_np.shape[:2]
 
-        # SimCLR风格：多个擦除块
-        num_patches = random.randint(2, 5)  # 比MoCo更多
+        num_patches = random.randint(2, 5)
         for _ in range(num_patches):
-            patch_h = random.randint(h // 15, h // 6)  # 更大的块
+            patch_h = random.randint(h // 15, h // 6)
             patch_w = random.randint(w // 15, w // 6)
             y = random.randint(0, max(1, h - patch_h))
             x = random.randint(0, max(1, w - patch_w))
 
-            # 随机补黑/补白
             fill_value = random.choice([0, 255])
             img_np[y:y + patch_h, x:x + patch_w] = fill_value
 
